@@ -26,6 +26,11 @@ function Navbar() {
               <a>Product Grid</a>
             </Link>
           </li>
+          <li>
+            <a href="https://github.com/Ariels713/caraway" target="_blank">
+              Repo
+            </a>
+          </li>
         </ul>
       </Navigation>
     </>
