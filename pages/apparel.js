@@ -1,15 +1,13 @@
-import styled from "styled-components";
-import Image from "next/image";
-import Breadcumbs from "../components/products/Breadcumbs";
-
-const apparelEndpoint = "https://www.allbirds.com/products.json?limit=100";
-
+import styled from 'styled-components'
+import Image from 'next/image'
+import Breadcumbs from '../components/products/Breadcumbs'
+const apparelEndpoint = 'https://www.allbirds.com/products.json?limit=100'
 function apparel({ data }) {
-  const results = data.products;
+  const results = data.products
 
   const filteredResults = results.filter((apparel) => {
-    return apparel.product_type === "Apparel";
-  });
+    return apparel.product_type === 'Apparel'
+  })
 
   return (
     <>
@@ -18,50 +16,51 @@ function apparel({ data }) {
       </BreadcumbWrapper>
       <Wrapper>
         <GridWrapper>
+          <h1>Shoes</h1>
           <GridParent>
             {filteredResults.map((res) => {
-              const { created_at, id, images, options, title, variants } = res;
+              const { created_at, id, images, product_type, title, variants } =
+                res
               return (
                 <GridItemAnchor key={id}>
                   <ImageWrapper>
-                    <Image src={images[0].src} alt="title" layout="fill" />
+                    <Image src={images[0].src} alt='title' layout='fill' />
                   </ImageWrapper>
                   <ProductWrapper>
-                    <ProductName>{title}</ProductName>
+                    {variants.map((sale) => {
+                      if (sale.compare_at_price != null) {
+                        return <SalePill>Sale!</SalePill>
+                      }
+                    })}
+                    <ProductName>&#8212;{title}</ProductName>
                     <ProductPrice>
                       {` `} &#36;{variants[0].price}
                     </ProductPrice>
                   </ProductWrapper>
-                  {variants.map((sale) => {
-                    if (sale.compare_at_price != null) {
-                      return <SalePill>Sale!</SalePill>;
-                    }
-                  })}
                   <ProductColor>Cuoio</ProductColor>
-                  <ProductStyle>
-                    {options[0].values.length} Sizes Available
-                  </ProductStyle>
+                  <ProductStyle>3 Styles Available</ProductStyle>
                 </GridItemAnchor>
-              );
+              )
             })}
           </GridParent>
         </GridWrapper>
       </Wrapper>
     </>
-  );
+  )
 }
 
-export default apparel;
+export default apparel
 
 export async function getServerSideProps() {
-  const res = await fetch(apparelEndpoint);
+  const res = await fetch(apparelEndpoint)
 
-  const data = await res.json();
+  const data = await res.json()
+
   return {
     props: {
       data,
     },
-  };
+  }
 }
 
 // Styles for Apparels Page
@@ -69,28 +68,27 @@ const BreadcumbWrapper = styled.div`
   display: grid;
   place-content: center;
   padding-block: 2rem;
-`;
+`
 
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 100%, 1);
-`;
+`
 
 const GridWrapper = styled.div`
   max-width: 80rem;
   margin: auto;
-  padding-block: 4rem;
+  padding-block: 2rem;
   padding-inline: 1rem;
   overflow: hidden;
 
   @media (min-width: 640px) {
-    padding-block: 6rem;
+    padding-block: 2rem;
     padding-inline: 1.5rem;
   }
 
   @media (min-width: 1024px) {
-    padding-inline: 2rem;
   }
-`;
+`
 
 const GridParent = styled.div`
   display: grid;
@@ -106,14 +104,14 @@ const GridParent = styled.div`
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 2rem;
   }
-`;
+`
 
 const GridItemAnchor = styled.a`
   position: relative;
   font-size: 1rem;
   line-height: 1.25rem;
   cursor: pointer;
-`;
+`
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -125,44 +123,41 @@ const ImageWrapper = styled.div`
 
   &:hover {
     opacity: 0.75;
-    background: url(https://images.pexels.com/photos/11129005/pexels-photo-11129005.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260)
-      no-repeat;
   }
-`;
+`
 
 const GridImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-`;
+`
 
 const ProductWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-block-start: 1rem;
   font-weight: 500;
-`;
+`
 
 const ProductName = styled.p`
   color: hsla(221, 41%, 11%, 1);
-`;
+`
 
 const ProductPrice = styled.p`
   margin-inline-end: 0.5rem;
   color: hsla(221, 41%, 11%, 1);
-`;
+`
 
 const ProductColor = styled.p`
   color: hsla(219, 7%, 51%, 1);
   font-size: 0.85rem;
   font-style: italic;
-`;
+`
 
 const ProductStyle = styled.p`
   color: hsla(219, 7%, 51%, 1);
-`;
-
+`
 const SalePill = styled.span`
   position: absolute;
   top: 10px;
@@ -177,4 +172,4 @@ const SalePill = styled.span`
   color: var(--color-primary);
   font-weight: 500;
   font-size: 0.75rem;
-`;
+`
