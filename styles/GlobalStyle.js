@@ -112,6 +112,13 @@ img[width] {
   height: auto;
 }
 
+.nextImage {
+    width:100%; 
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
 :target {
   scroll-margin-top: 2rem;
 }

@@ -1,18 +1,16 @@
 import styled from "styled-components";
 import Image from "next/image";
-import Breadcumbs from "../components/products/Breadcumbs";
 
-function productGrid() {
+function Socks() {
   return (
     <>
-      <Breadcumbs />
       <Wrapper>
         <GridWrapper>
           <GridParent>
             <GridItemAnchor>
               <ImageWrapper>
                 <Image
-                  src="https://cdn.shopify.com/s/files/1/1104/4168/products/Grid_On-_Body_TrinoXO_Tee_Natural_Grey_Female_6345c98e-c5c4-4956-b9b5-7dd6eacd1fa0.png?v=1617730985"
+                  src="https://cdn.shopify.com/s/files/1/1104/4168/products/Grid_On-Body_Tee_Natural_Grey_TrinoXO_Female_02.png?v=1617730985"
                   alt="Galaxy"
                   layout="fill"
                 />
@@ -31,7 +29,7 @@ function productGrid() {
   );
 }
 
-export default productGrid;
+export default Socks;
 
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 100%, 1);
