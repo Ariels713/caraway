@@ -16,7 +16,7 @@ function apparel({ data }) {
       </BreadcumbWrapper>
       <Wrapper>
         <GridWrapper>
-          <h1>Shoes</h1>
+          <h1>Apparel</h1>
           <GridParent>
             {filteredResults.map((res) => {
               const { created_at, id, images, product_type, title, variants } =
