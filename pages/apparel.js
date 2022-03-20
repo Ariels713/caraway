@@ -57,7 +57,6 @@ export async function getServerSideProps() {
 const BreadcumbWrapper = styled.div`
   display: grid;
   place-content: center;
-``
   padding-block: 2rem;
 `
 
