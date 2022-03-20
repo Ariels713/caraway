@@ -1,3 +1,7 @@
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Navigation } from 'swiper'
 import styled from 'styled-components'
 import Image from 'next/image'
 import Breadcumbs from '../components/products/Breadcumbs'
@@ -26,7 +30,15 @@ function underwear({ data }) {
               return (
                 <GridItemAnchor key={id}>
                   <ImageWrapper>
-                    <Image src={images[0].src} alt='title' layout='fill' />
+                    <Swiper
+                      navigation={true}
+                      modules={[Navigation]}
+                      className='mySwiper'
+                    >
+                      <SwiperSlide>
+                        <Image src={images[0].src} alt='title' layout='fill' />
+                      </SwiperSlide>
+                    </Swiper>
                   </ImageWrapper>
                   <ProductWrapper>
                     {variants.map((sale) => {
