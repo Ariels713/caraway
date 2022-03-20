@@ -13,7 +13,7 @@
 
 module.exports = {
   images: {
-    domains: ["res.cloudinary.com", "cdn.shopify.com"],
+    domains: ['res.cloudinary.com', 'cdn.shopify.com'],
   },
-  target: "serverless",
-};
+  // target: "serverless",
+}

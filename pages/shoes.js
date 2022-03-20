@@ -1,37 +1,65 @@
-import styled from "styled-components";
-import Image from "next/image";
+import styled from 'styled-components'
+import Image from 'next/image'
+import Breadcumbs from '../components/products/Breadcumbs'
 
-function shoes() {
+const apparelEndpoint = 'https://www.allbirds.com/products.json?limit=2'
+
+function shoes({ data }) {
   return (
-    <Wrapper>
-      <GridWrapper>
-        <GridParent>
-          <GridItemAnchor>
-            <ImageWrapper>
-              <Image
-                src="https://cdn.shopify.com/s/files/1/1104/4168/products/Grid_On-Body_Natural_Grey_TrinoXO_Tee_Female_04_30e7e1bc-4ba8-4814-ba65-8fc4316bad91.jpg?v=1617730985"
-                alt="Galaxy"
-                layout="fill"
-              />
-            </ImageWrapper>
-            <ProductWrapper>
-              <ProductName>Royale High</ProductName>
-              <ProductPrice>$199</ProductPrice>
-            </ProductWrapper>
-            <ProductColor>Cuoio</ProductColor>
-            <ProductStyle>3 Styles Available</ProductStyle>
-          </GridItemAnchor>
-        </GridParent>
-      </GridWrapper>
-    </Wrapper>
-  );
+    <>
+      <BreadcumbWrapper>
+        <Breadcumbs />
+      </BreadcumbWrapper>
+      <Wrapper>
+        <GridWrapper>
+          <GridParent>
+            {data.products.map((res) => {
+              const { created_at, id, images, product_type, title, variants } =
+                res
+              return (
+                <GridItemAnchor key={id}>
+                  <ImageWrapper>
+                    <Image src={images[0].src} alt='title' layout='fill' />
+                  </ImageWrapper>
+                  <ProductWrapper>
+                    <ProductName>Royale High</ProductName>
+                    <ProductPrice>$199</ProductPrice>
+                  </ProductWrapper>
+                  <ProductColor>Cuoio</ProductColor>
+                  <ProductStyle>3 Styles Available</ProductStyle>
+                </GridItemAnchor>
+              )
+            })}
+          </GridParent>
+        </GridWrapper>
+      </Wrapper>
+    </>
+  )
 }
 
-export default shoes;
+export default shoes
+
+export async function getServerSideProps() {
+  const res = await fetch(apparelEndpoint)
+
+  const data = await res.json()
+
+  return {
+    props: {
+      data,
+    },
+  }
+}
+
+const BreadcumbWrapper = styled.div`
+  display: grid;
+  place-content: center;
+  padding-block: 2rem;
+`
 
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 100%, 1);
-`;
+`
 
 const GridWrapper = styled.div`
   max-width: 80rem;
@@ -48,7 +76,7 @@ const GridWrapper = styled.div`
   @media (min-width: 1024px) {
     padding-inline: 2rem;
   }
-`;
+`
 
 const GridParent = styled.div`
   display: grid;
@@ -64,13 +92,13 @@ const GridParent = styled.div`
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 2rem;
   }
-`;
+`
 
 const GridItemAnchor = styled.a`
   font-size: 1rem;
   line-height: 1.25rem;
   cursor: pointer;
-`;
+`
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -83,37 +111,37 @@ const ImageWrapper = styled.div`
   &:hover {
     opacity: 0.75;
   }
-`;
+`
 
 const GridImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-`;
+`
 
 const ProductWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-block-start: 1rem;
   font-weight: 500;
-`;
+`
 
 const ProductName = styled.p`
   color: hsla(221, 41%, 11%, 1);
-`;
+`
 
 const ProductPrice = styled.p`
   margin-inline-end: 0.5rem;
   color: hsla(221, 41%, 11%, 1);
-`;
+`
 
 const ProductColor = styled.p`
   color: hsla(219, 7%, 51%, 1);
   font-size: 0.85rem;
   font-style: italic;
-`;
+`
 
 const ProductStyle = styled.p`
   color: hsla(219, 7%, 51%, 1);
-`;
+`

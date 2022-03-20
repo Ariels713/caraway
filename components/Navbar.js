@@ -1,43 +1,43 @@
-import Link from "next/link";
-import styled from "styled-components";
-import Me from "./Me";
+import Link from 'next/link'
+import styled from 'styled-components'
+import Me from './Me'
 function Navbar() {
   return (
     <>
       <Navigation>
-        <Link href="/">
+        <Link href='/'>
           <a>
             <Me />
           </a>
         </Link>
-        <ul role="list" className="layout-flex">
+        <ul role='list' className='layout-flex'>
           <li>
-            <Link href="/button">
+            <Link href='/button'>
               <a>Button</a>
             </Link>
           </li>
           <li>
-            <Link href="/input">
+            <Link href='/input'>
               <a>Input</a>
             </Link>
           </li>
           <li>
-            <Link href="/productGrid">
+            <Link href='/productGrid'>
               <a>Product Grid</a>
             </Link>
           </li>
           <li>
-            <a href="https://github.com/Ariels713/caraway" target="_blank">
+            <a href='https://github.com/Ariels713/caraway' target='_blank'>
               Repo
             </a>
           </li>
         </ul>
       </Navigation>
     </>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
 
 const Navigation = styled.nav`
   background-color: var(--color-primary);
@@ -54,6 +54,6 @@ const Navigation = styled.nav`
     color: var(--color-secondary);
     font-size: 1.25rem;
     font-weight: bold;
-    font-family: "Open Sans";
+    font-family: 'Open Sans' monospace;
   }
-`;
+`

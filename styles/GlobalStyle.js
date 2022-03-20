@@ -1,17 +1,17 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   :root{
-    ${"" /* Color Pallete */}
+    ${'' /* Color Pallete */}
       --color-primary:hsla(23, 30%, 96%, 1.00);
       --color-secondary:hsla(0, 0%, 14%, 1.00); 
       --color-tertiary: hsla(7, 89%, 62%, 1.00);
       --color-accent: hsla(180, 92%, 26%, 1.00);
       
       --color-secondaryHover: hsla(205, 58%, 26%, 1.00);
-      ${"" /* --color-gray:${(props) => props.gray}; */}
+      ${'' /* --color-gray:${(props) => props.gray}; */}
     
-    ${"" /* Shadows */}
+    ${'' /* Shadows */}
     --shadow-color: 77deg 76% 40%;
     --shadow-elevation-medium:
     0.3px 0.5px 0.5px hsl(var(--shadow-color) / 0.49),
@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     4.5px 9px 8.6px -4.3px hsl(var(--shadow-color) / 0.18);
 
     
-    ${"" /* Form Shadows */}
+    ${'' /* Form Shadows */}
     --form-shadow-color: 255deg 54% 44%;
     --form-shadow-elevation-medium:
       0.3px 0.5px 0.7px hsl(var(--form-shadow-color) / 0.36),
@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
       2.1px 4.1px 5.2px -1.7px hsl(var(--form-shadow-color) / 0.36),
       5px 10px 12.6px -2.5px hsl(var(--form-shadow-color) / 0.36);
 
-      ${"" /* Breakpoints */}
+      ${'' /* Breakpoints */}
       --screen-small:640px; 
       --screen-medium:768px; 
       --screen-large:1024px;
@@ -39,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
 
 
   @font-face {
-    font-family: "Open Sans";
+    font-family: "Open Sans", monospace;
     src: url("/public/fonts/OpenSans-VariableFont_wdth,wght.ttf");
     font-style: normal;
     font-weight: 400;
@@ -68,7 +68,7 @@ html, body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  ${"" /* Modern CSS Reset */}
+  ${'' /* Modern CSS Reset */}
   text-rendering: optimizeSpeed;
   /* 🟣 Set base font-family */
   font-family: system-ui, sans-serif;
@@ -91,7 +91,7 @@ input, button, textarea, select {
   height:100%;
 }
 
-${"" /* Modern CSS Reset Start */}
+${'' /* Modern CSS Reset Start */}
 
 :where(ul, ol):where([role="list"]) {
   margin: 0;
@@ -142,7 +142,7 @@ img[width] {
   }
 }
 
-${"" /* Utility Classes */}
+${'' /* Utility Classes */}
  
  .layout-flex {
    --gap: 2rem;
@@ -161,7 +161,7 @@ width: min(var(--container-width), 100vw - 3rem);
 margin-inline: auto;
 }
 
-${"" /* Grid Layout Utility Classes Start */}
+${'' /* Grid Layout Utility Classes Start */}
 
 .layout-grid {
   --gap: 1rem;
@@ -209,7 +209,7 @@ ${"" /* Grid Layout Utility Classes Start */}
     }
   }
 }
-${"" /* Grid Layout Utility Classes Ends */}
+${'' /* Grid Layout Utility Classes Ends */}
   
 
 :is(a, button, input, textarea) {
@@ -232,10 +232,10 @@ ${"" /* Grid Layout Utility Classes Ends */}
   }
 }
 
-${"" /* Link Styles, Hover Styles, Focus Styles End */}
+${'' /* Link Styles, Hover Styles, Focus Styles End */}
 
 
 
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle
