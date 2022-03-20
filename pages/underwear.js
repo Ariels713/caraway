@@ -30,8 +30,9 @@ function underwear({ data }) {
                   </ImageWrapper>
                   <ProductWrapper>
                     {variants.map((sale) => {
+                      const { id } = sale
                       if (sale.compare_at_price != null) {
-                        return <SalePill>Sale!</SalePill>
+                        return <SalePill key={id}>Sale!</SalePill>
                       }
                     })}
                     <ProductName>{title}</ProductName>
