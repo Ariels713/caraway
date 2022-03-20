@@ -1,17 +1,17 @@
-import styled from 'styled-components'
-import Image from 'next/image'
-import Breadcumbs from '../components/products/Breadcumbs'
-const apparelEndpoint = 'https://www.allbirds.com/products.json?limit=10'
+import styled from "styled-components";
+import Image from "next/image";
+import Breadcumbs from "../components/products/Breadcumbs";
+const apparelEndpoint = "https://www.allbirds.com/products.json?limit=10";
 
 function productGrid({ data }) {
-  const { results = [] } = data.products
+  const { results = [] } = data.products;
 
   return (
     <>
       <BreadcumbWrapper>
         <Breadcumbs />
       </BreadcumbWrapper>
-      <Wrapper>
+      {/* <Wrapper>
         <GridWrapper>
           <GridParent>
             {data.products.map((res) => {
@@ -33,33 +33,33 @@ function productGrid({ data }) {
             })}
           </GridParent>
         </GridWrapper>
-      </Wrapper>
+      </Wrapper> */}
     </>
-  )
+  );
 }
 
-export default productGrid
+export default productGrid;
 
 export async function getServerSideProps() {
-  const res = await fetch(apparelEndpoint)
+  const res = await fetch(apparelEndpoint);
 
-  const data = await res.json()
+  const data = await res.json();
 
   return {
     props: {
       data,
     },
-  }
+  };
 }
 
 const BreadcumbWrapper = styled.div`
   display: grid;
   place-content: center;
   padding-block: 2rem;
-`
+`;
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 100%, 1);
-`
+`;
 
 const GridWrapper = styled.div`
   max-width: 80rem;
@@ -76,7 +76,7 @@ const GridWrapper = styled.div`
   @media (min-width: 1024px) {
     padding-inline: 2rem;
   }
-`
+`;
 
 const GridParent = styled.div`
   display: grid;
@@ -92,13 +92,13 @@ const GridParent = styled.div`
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 2rem;
   }
-`
+`;
 
 const GridItemAnchor = styled.a`
   font-size: 1rem;
   line-height: 1.25rem;
   cursor: pointer;
-`
+`;
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -111,37 +111,37 @@ const ImageWrapper = styled.div`
   &:hover {
     opacity: 0.75;
   }
-`
+`;
 
 const GridImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-`
+`;
 
 const ProductWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-block-start: 1rem;
   font-weight: 500;
-`
+`;
 
 const ProductName = styled.p`
   color: hsla(221, 41%, 11%, 1);
-`
+`;
 
 const ProductPrice = styled.p`
   margin-inline-end: 0.5rem;
   color: hsla(221, 41%, 11%, 1);
-`
+`;
 
 const ProductColor = styled.p`
   color: hsla(219, 7%, 51%, 1);
   font-size: 0.85rem;
   font-style: italic;
-`
+`;
 
 const ProductStyle = styled.p`
   color: hsla(219, 7%, 51%, 1);
-`
+`;

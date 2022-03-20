@@ -1,11 +1,15 @@
-import styled from 'styled-components'
-import Image from 'next/image'
-import Breadcumbs from '../components/products/Breadcumbs'
+import styled from "styled-components";
+import Image from "next/image";
+import Breadcumbs from "../components/products/Breadcumbs";
 
-const apparelEndpoint = 'https://www.allbirds.com/products.json?limit=4'
+const apparelEndpoint = "https://www.allbirds.com/products.json?limit=100";
 
 function underwear({ data }) {
-  const { results = [] } = data.products
+  const results = data.products;
+
+  const filteredResults = results.filter((apparel) => {
+    return apparel.product_type === "Underwear";
+  });
 
   return (
     <>
@@ -15,53 +19,60 @@ function underwear({ data }) {
       <Wrapper>
         <GridWrapper>
           <GridParent>
-            {data.products.map((res) => {
+            {filteredResults.map((res) => {
               const { created_at, id, images, product_type, title, variants } =
-                res
+                res;
               return (
                 <GridItemAnchor key={id}>
                   <ImageWrapper>
-                    <Image src={images[0].src} alt='title' layout='fill' />
+                    <Image src={images[0].src} alt="title" layout="fill" />
                   </ImageWrapper>
                   <ProductWrapper>
-                    <ProductName>Royale High</ProductName>
-                    <ProductPrice>$199</ProductPrice>
+                    {variants.map((sale) => {
+                      if (sale.compare_at_price != null) {
+                        return <SalePill>Sale!</SalePill>;
+                      }
+                    })}
+                    <ProductName>{title}</ProductName>
+                    <ProductPrice>
+                      {` `} &#36;{variants[0].price}
+                    </ProductPrice>
                   </ProductWrapper>
                   <ProductColor>Cuoio</ProductColor>
                   <ProductStyle>3 Styles Available</ProductStyle>
                 </GridItemAnchor>
-              )
+              );
             })}
           </GridParent>
         </GridWrapper>
       </Wrapper>
     </>
-  )
+  );
 }
 
-export default underwear
+export default underwear;
 
 export async function getServerSideProps() {
-  const res = await fetch(apparelEndpoint)
+  const res = await fetch(apparelEndpoint);
 
-  const data = await res.json()
+  const data = await res.json();
 
   return {
     props: {
       data,
     },
-  }
+  };
 }
 
 const BreadcumbWrapper = styled.div`
   display: grid;
   place-content: center;
   padding-block: 2rem;
-`
+`;
 
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 100%, 1);
-`
+`;
 
 const GridWrapper = styled.div`
   max-width: 80rem;
@@ -78,7 +89,7 @@ const GridWrapper = styled.div`
   @media (min-width: 1024px) {
     padding-inline: 2rem;
   }
-`
+`;
 
 const GridParent = styled.div`
   display: grid;
@@ -94,13 +105,14 @@ const GridParent = styled.div`
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 2rem;
   }
-`
+`;
 
 const GridItemAnchor = styled.a`
+  position: relative;
   font-size: 1rem;
   line-height: 1.25rem;
   cursor: pointer;
-`
+`;
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -113,37 +125,53 @@ const ImageWrapper = styled.div`
   &:hover {
     opacity: 0.75;
   }
-`
+`;
 
 const GridImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-`
+`;
 
 const ProductWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-block-start: 1rem;
   font-weight: 500;
-`
+`;
 
 const ProductName = styled.p`
   color: hsla(221, 41%, 11%, 1);
-`
+`;
 
 const ProductPrice = styled.p`
   margin-inline-end: 0.5rem;
   color: hsla(221, 41%, 11%, 1);
-`
+`;
 
 const ProductColor = styled.p`
   color: hsla(219, 7%, 51%, 1);
   font-size: 0.85rem;
   font-style: italic;
-`
+`;
 
 const ProductStyle = styled.p`
   color: hsla(219, 7%, 51%, 1);
-`
+`;
+
+const SalePill = styled.span`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  justify-content: center;
+  max-width: 50px;
+  padding-inline: 0.85rem;
+  padding-block: 0.125rem;
+  background-color: hsla(352, 84%, 59%, 1);
+  border-radius: 9999px;
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 0.75rem;
+`;

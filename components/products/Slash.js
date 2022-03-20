@@ -5,7 +5,7 @@ function Slash(props) {
 
   return (
     <svg
-      style={{ marginInlineStart: ".5rem" }}
+      style={{ marginInlineStart: "1rem" }}
       height="16"
       width="16"
       viewBox="0 0 16 16"
