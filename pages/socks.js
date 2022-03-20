@@ -1,33 +1,35 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-function Shoes() {
+function socks() {
   return (
-    <Wrapper>
-      <GridWrapper>
-        <GridParent>
-          <GridItemAnchor>
-            <ImageWrapper>
-              <Image
-                src="https://cdn.shopify.com/s/files/1/1104/4168/products/Grid_On-Body_Natural_Grey_TrinoXO_Tee_Female_04_30e7e1bc-4ba8-4814-ba65-8fc4316bad91.jpg?v=1617730985"
-                alt="Galaxy"
-                layout="fill"
-              />
-            </ImageWrapper>
-            <ProductWrapper>
-              <ProductName>Royale High</ProductName>
-              <ProductPrice>$199</ProductPrice>
-            </ProductWrapper>
-            <ProductColor>Cuoio</ProductColor>
-            <ProductStyle>3 Styles Available</ProductStyle>
-          </GridItemAnchor>
-        </GridParent>
-      </GridWrapper>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <GridWrapper>
+          <GridParent>
+            <GridItemAnchor>
+              <ImageWrapper>
+                <Image
+                  src="https://cdn.shopify.com/s/files/1/1104/4168/products/Grid_On-Body_Tee_Natural_Grey_TrinoXO_Female_02.png?v=1617730985"
+                  alt="Galaxy"
+                  layout="fill"
+                />
+              </ImageWrapper>
+              <ProductWrapper>
+                <ProductName>Royale High</ProductName>
+                <ProductPrice>$199</ProductPrice>
+              </ProductWrapper>
+              <ProductColor>Cuoio</ProductColor>
+              <ProductStyle>3 Styles Available</ProductStyle>
+            </GridItemAnchor>
+          </GridParent>
+        </GridWrapper>
+      </Wrapper>
+    </>
   );
 }
 
-export default Shoes;
+export default socks;
 
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 100%, 1);

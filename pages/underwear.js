@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-function Underwear() {
+function underwear() {
   return (
     <Wrapper>
       <GridWrapper>
@@ -9,7 +9,7 @@ function Underwear() {
           <GridItemAnchor>
             <ImageWrapper>
               <Image
-                src="https://cdn.shopify.com/s/files/1/1104/4168/products/Grid_On-Body_Tee_Natural_Grey_TrinoXO_Female_02.png?v=1617730985"
+                src="https://cdn.shopify.com/s/files/1/1104/4168/products/MATT1NCCM2_APPAREL_MACRO2_GLOBAL_MENS_TEE_NATURAL_GREY_0873eaf8-9229-4cf5-a46b-b0bbe376f1d6.jpg?v=1617730985"
                 alt="Galaxy"
                 layout="fill"
               />
@@ -27,7 +27,7 @@ function Underwear() {
   );
 }
 
-export default Underwear;
+export default underwear;
 
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 100%, 1);

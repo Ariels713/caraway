@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Slash from "./Slash";
-
+import Link from "next/link";
 function Breadcumbs() {
   return (
     <>
@@ -8,25 +8,33 @@ function Breadcumbs() {
         <OrderedList role="list">
           <li>
             <AnchorWrapper>
-              <Anchor>Apperal</Anchor>
+              <Link href="/apparel" passHref>
+                <Anchor>Apperal</Anchor>
+              </Link>
               <Slash />
             </AnchorWrapper>
           </li>
           <li>
             <AnchorWrapper>
-              <Anchor>Shoes</Anchor>
+              <Link href="/shoes" passHref>
+                <Anchor>Shoes</Anchor>
+              </Link>
               <Slash />
             </AnchorWrapper>
           </li>
           <li>
             <AnchorWrapper>
-              <Anchor>Socks</Anchor>
+              <Link href="/socks" passHref>
+                <Anchor>Socks</Anchor>
+              </Link>
               <Slash />
             </AnchorWrapper>
           </li>
           <li>
             <AnchorWrapper>
-              <Anchor>Underwear</Anchor>
+              <Link href="/underwear" passHref>
+                <Anchor>Underwear</Anchor>
+              </Link>
             </AnchorWrapper>
           </li>
         </OrderedList>
@@ -48,6 +56,7 @@ const OrderedList = styled.ol`
 `;
 
 const Anchor = styled.a`
+  cursor: pointer;
   list-style: none;
   color: var(--color-secondary);
   margin-inline-start: 1rem;

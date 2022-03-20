@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-function Apparel() {
+function shoes() {
   return (
     <Wrapper>
       <GridWrapper>
@@ -9,7 +9,7 @@ function Apparel() {
           <GridItemAnchor>
             <ImageWrapper>
               <Image
-                src="https://cdn.shopify.com/s/files/1/1104/4168/products/Grid_On-_Body_TrinoXO_Tee_Natural_Grey_Female_6345c98e-c5c4-4956-b9b5-7dd6eacd1fa0.png?v=1617730985"
+                src="https://cdn.shopify.com/s/files/1/1104/4168/products/Grid_On-Body_Natural_Grey_TrinoXO_Tee_Female_04_30e7e1bc-4ba8-4814-ba65-8fc4316bad91.jpg?v=1617730985"
                 alt="Galaxy"
                 layout="fill"
               />
@@ -27,7 +27,7 @@ function Apparel() {
   );
 }
 
-export default Apparel;
+export default shoes;
 
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 100%, 1);
