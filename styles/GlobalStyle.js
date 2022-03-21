@@ -279,6 +279,11 @@ ${'' /* Modal and Backdrop Styles */}
     background-color: #eedbaf;
 }
 
+.content {
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
 
 `

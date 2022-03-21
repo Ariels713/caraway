@@ -23,7 +23,7 @@ function Underwear({ data }) {
         <GridWrapper>
           <h1>Underwear</h1>
           <GridParent>
-            {filteredResults.map((res) => {
+            {filteredResults.map((res, index) => {
               const { published_at, id, images, title, variants, options } = res
               return (
                 <GridItemAnchor
@@ -51,12 +51,6 @@ function Underwear({ data }) {
                     ) : null}
                   </ProductWrapper>
                   <ProductPrice>
-                    {/* {variants.map((stock) => {
-                      if (!stock.available) {
-                        return <OutOfStock>Out of stock</OutOfStock>;
-                      }
-                      return `&#36;${variants[0].price}`;
-                    })} */}
                     {` `} &#36;{variants[0].price}
                   </ProductPrice>
                   <ProductStyle>
@@ -69,19 +63,20 @@ function Underwear({ data }) {
                       }
                     })}
                   </ProductStyle>
+                  {modalOpen && (
+                    <Modal
+                      data={res}
+                      index={index}
+                      modalOpen={modalOpen}
+                      handleClose={close}
+                    />
+                  )}
                 </GridItemAnchor>
               )
             })}
           </GridParent>
         </GridWrapper>
       </Wrapper>
-      {modalOpen && (
-        <Modal
-          data={filteredResults}
-          modalOpen={modalOpen}
-          handleClose={close}
-        />
-      )}
     </>
   )
 }
