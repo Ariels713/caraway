@@ -44,7 +44,7 @@ function Modal({ handleClose, data, index }) {
         animate='visible'
         exit='exit'
       >
-        <div className='product'>
+        {/* <div className='product'>
           <div className='product-img'>
             <Image src={data.images[3].src} alt='' layout='fill' />
           </div>
@@ -72,7 +72,7 @@ function Modal({ handleClose, data, index }) {
               </ProductStyle>
             </div>
           </div>
-        </div>
+        </div> */}
       </motion.div>
     </Backdrop>
   )
