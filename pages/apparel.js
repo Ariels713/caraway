@@ -176,11 +176,11 @@ const NewPill = styled.span`
   display: grid;
   justify-content: center;
   max-width: 50px;
-  max-height: 25px;
-  padding-inline: 0.85rem;
+  max-width: 50px;
+  padding-inline: 0.5rem;
   padding-block: 0.125rem;
-  background-color: hsla(163, 30%, 75%, 1);
-  border-radius: 9999px;
+  background-color: hsla(163, 30%, 75%, 0.5);
+  border-radius: 4px;
   color: var(--color-secondary);
   font-weight: 500;
   font-size: 0.75rem;
