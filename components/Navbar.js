@@ -30,7 +30,6 @@ function Navbar() {
             <a
               href="https://github.com/Ariels713/caraway"
               target="_blank"
-              // rel="noopener"
               rel="noreferrer"
             >
               Repo

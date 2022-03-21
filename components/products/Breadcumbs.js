@@ -9,7 +9,7 @@ function Breadcumbs() {
           <li>
             <AnchorWrapper>
               <Link href="/apparel" passHref>
-                <Anchor>Apperal</Anchor>
+                <Anchor>Apparel</Anchor>
               </Link>
               <Slash />
             </AnchorWrapper>

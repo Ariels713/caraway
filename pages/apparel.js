@@ -156,18 +156,18 @@ const ProductPrice = styled.p`
 const ProductStyle = styled.p`
   color: hsla(219, 7%, 51%, 1);
 `;
+
 const SalePill = styled.span`
   position: absolute;
   top: 10px;
-  right: 10px;
   display: grid;
   justify-content: center;
   max-width: 50px;
   padding-inline: 0.85rem;
   padding-block: 0.125rem;
-  background-color: hsla(352, 84%, 59%, 1);
-  border-radius: 9999px;
-  color: var(--color-primary);
+  background-color: hsla(40, 16%, 84%, 1);
+  /* border-radius: 9999px; */
+  color: hsla(36, 2%, 47%, 1);
   font-weight: 500;
   font-size: 0.75rem;
 `;
