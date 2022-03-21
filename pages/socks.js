@@ -154,17 +154,12 @@ const ImageWrapper = styled.div`
   border-radius: 10px;
   overflow: hidden;
   background-color: hsla(19, 34%, 96%, 1);
+  transition: transform 300ms ease-in-out;
 
   &:hover {
-    opacity: 0.75;
+    opacity: 0.95;
+    transform: scale(1.025);
   }
-`;
-
-const GridImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
 `;
 
 const ProductWrapper = styled.div`
