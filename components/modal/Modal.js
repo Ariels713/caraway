@@ -41,23 +41,23 @@ function Modal({ handleClose, data, index }) {
         animate='visible'
         exit='exit'
       >
-        <div class='product'>
-          <div class='product-img'>
+        <div className='product'>
+          <div className='product-img'>
             {/* <Image src={data[0].images[0].src} alt='' layout='fill' /> */}
           </div>
-          <div class='product-listing'>
-            <div class='content'>
-              <div class='content-display'>
-                <h1 class='name'>leather bag</h1>
-                <p class='info'>
+          <div className='product-listing'>
+            <div className='content'>
+              <div className='content-display'>
+                <h1 className='name'>leather bag</h1>
+                <p className='info'>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Doloremque laborum optio natus quibusdam ea nam odit vitae id
                   unde officia.
                 </p>
               </div>
-              <div class='btn-and-rating-box'>
-                <p class='price'>$ 299</p>
-                <button class='btn'>buy now</button>
+              <div className='btn-and-rating-box'>
+                <p className='price'>$ 299</p>
+                <button className='btn'>buy now</button>
               </div>
             </div>
           </div>
