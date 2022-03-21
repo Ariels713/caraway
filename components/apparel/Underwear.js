@@ -74,7 +74,7 @@ function Underwear({ data }) {
       </Wrapper>
       {modalOpen && (
         <Modal
-          data={filteredResults}
+          data={data}
           modalOpen={modalOpen}
           handleClose={close}
           index={modalID}

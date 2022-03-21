@@ -5,9 +5,7 @@ import Underwear from "../components/apparel/Underwear";
 const apparelEndpoint = "https://www.allbirds.com/products.json?limit=100";
 
 function underwear({ data }) {
-  const results = data.products;
-
-  const filteredResults = results.filter((apparel) => {
+  const filteredResults = data.products.filter((apparel) => {
     return apparel.product_type === "Underwear";
   });
   return (
