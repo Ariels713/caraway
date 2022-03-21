@@ -1,68 +1,100 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { newItemAlert } from "../../utils/dateRange";
+import { Motion } from "framer-motion";
+import Modal from "../../components/modal/Modal";
 
 function Apparel({ data }) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const close = () => setModalOpen(false);
+  const open = () => setModalOpen(true);
+  const [modalID, setModalID] = useState(null);
+  console.log(modalID);
   const results = data.products;
 
   const filteredResults = results.filter((apparel) => {
     return apparel.product_type === "Apparel";
   });
-
+  // console.log('filtered', filteredResults)
   return (
     <>
       <Wrapper>
         <GridWrapper>
           <h1>Apparel</h1>
           <GridParent>
-            {filteredResults.map((res) => {
+            {filteredResults.map((res, index) => {
               const { published_at, id, images, title, variants, options } =
                 res;
               return (
-                <GridItemAnchor key={id}>
-                  <ImageWrapper>
-                    <Image src={images[0].src} alt="title" layout="fill" />
-                  </ImageWrapper>
-                  <ProductWrapper>
-                    {variants.map((sale) => {
-                      const { id } = sale;
-                      if (sale.compare_at_price != null) {
-                        return <SalePill key={id}>Sale!</SalePill>;
-                      }
-                    })}
-                    <ProductName>{title}</ProductName>
-                    {newItemAlert(published_at) < 7 ? (
-                      <NewPill>New</NewPill>
-                    ) : null}
-                  </ProductWrapper>
-                  <ProductPrice>
-                    {` `} &#36;{variants[0].price}
-                  </ProductPrice>
-                  <ProductStyle>
-                    Available sizes:{" "}
-                    {variants.map((sizes, id) => {
-                      if (sizes.available === false) {
-                        return (
-                          <Unavailable key={id}>{sizes.title}</Unavailable>
-                        );
-                      } else if (sizes.available === true) {
-                        return <Available key={id}>{sizes.title}</Available>;
-                      }
-                    })}
-                  </ProductStyle>
-                </GridItemAnchor>
+                <>
+                  <GridItemAnchor
+                    key={id}
+                    onClick={() => {
+                      modalOpen ? close() : open();
+                    }}
+                    onMouseOver={() => {
+                      setModalID(index);
+                    }}
+                  >
+                    <ImageWrapper>
+                      <Image
+                        src={images[0].src}
+                        alt="title"
+                        layout="fill"
+                        className="nextImageScale"
+                      />
+                    </ImageWrapper>
+                    <ProductWrapper>
+                      {variants.map((sale) => {
+                        const { id } = sale;
+                        if (sale.compare_at_price != null) {
+                          return <SalePill key={id}>Sale</SalePill>;
+                        }
+                      })}
+                      <ProductName>{title}</ProductName>
+                      {newItemAlert(published_at) < 7 ? (
+                        <NewPill>New</NewPill>
+                      ) : null}
+                    </ProductWrapper>
+                    <ProductPrice>
+                      {` `} &#36;{variants[0].price}
+                    </ProductPrice>
+                    <ProductStyle>
+                      Available sizes:{" "}
+                      {variants.map((sizes, id) => {
+                        if (sizes.available === false) {
+                          return (
+                            <Unavailable key={id}>{sizes.title}</Unavailable>
+                          );
+                        } else if (sizes.available === true) {
+                          return <Available key={id}>{sizes.title}</Available>;
+                        }
+                      })}
+                    </ProductStyle>
+                  </GridItemAnchor>
+                </>
               );
             })}
           </GridParent>
         </GridWrapper>
       </Wrapper>
+      {modalOpen && (
+        <Modal
+          data={filteredResults}
+          modalOpen={modalOpen}
+          handleClose={close}
+          index={modalID}
+        />
+      )}
     </>
   );
 }
 
 export default Apparel;
 
-// Styles for Apparels Page
+// Styles for Apparel Page
+
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 100%, 1);
 `;
