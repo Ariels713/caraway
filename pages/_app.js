@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
-import GlobalStyles from '../styles/GlobalStyle.js'
-import Layout from '../components/Layout'
+import { motion } from "framer-motion";
+import GlobalStyles from "../styles/GlobalStyle.js";
+import Layout from "../components/Layout";
 function MyApp({ Component, pageProps, router }) {
   return (
     <>
@@ -9,8 +9,8 @@ function MyApp({ Component, pageProps, router }) {
       <Layout>
         <motion.div
           key={router.route}
-          initial='pageInitial'
-          animate='pageAnimate'
+          initial="pageInitial"
+          animate="pageAnimate"
           variants={{
             pageInitial: {
               opacity: 0,
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps, router }) {
         </motion.div>
       </Layout>
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

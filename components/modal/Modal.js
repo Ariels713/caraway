@@ -29,11 +29,6 @@ const openModal = {
 };
 
 function Modal({ handleClose, data, index }) {
-  // console.log('data from props', data.title)
-  // console.log(index)
-  console.log("res", data);
-  console.log(data[index].images[3].src);
-
   return (
     <Backdrop onClick={handleClose}>
       <motion.div

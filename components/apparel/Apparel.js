@@ -10,20 +10,14 @@ function Apparel({ data }) {
   const close = () => setModalOpen(false);
   const open = () => setModalOpen(true);
   const [modalID, setModalID] = useState(null);
-  console.log(modalID);
-  const results = data.products;
 
-  const filteredResults = results.filter((apparel) => {
-    return apparel.product_type === "Apparel";
-  });
-  // console.log('filtered', filteredResults)
   return (
     <>
       <Wrapper>
         <GridWrapper>
           <h1>Apparel</h1>
           <GridParent>
-            {filteredResults.map((res, index) => {
+            {data.map((res, index) => {
               const { published_at, id, images, title, variants, options } =
                 res;
               return (

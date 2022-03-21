@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { newItemAlert } from "../../utils/dateRange";
-import { Motion } from "framer-motion";
 import Modal from "../../components/modal/Modal";
 
 function Shoes({ data }) {
@@ -10,20 +9,14 @@ function Shoes({ data }) {
   const close = () => setModalOpen(false);
   const open = () => setModalOpen(true);
   const [modalID, setModalID] = useState(null);
-  console.log(modalID);
-  const results = data.products;
 
-  const filteredResults = results.filter((apparel) => {
-    return apparel.product_type === "Shoes";
-  });
-  // console.log('filtered', filteredResults)
   return (
     <>
       <Wrapper>
         <GridWrapper>
           <h1>Shoes</h1>
           <GridParent>
-            {filteredResults.map((res, index) => {
+            {data.map((res, index) => {
               const { published_at, id, images, title, variants, options } =
                 res;
               return (

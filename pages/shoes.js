@@ -6,12 +6,17 @@ import Breadcumbs from "../components/products/Breadcumbs";
 const apparelEndpoint = "https://www.allbirds.com/products.json?limit=100";
 
 function shoes({ data }) {
+  const results = data.products;
+
+  const filteredResults = results.filter((apparel) => {
+    return apparel.product_type === "Shoes";
+  });
   return (
     <>
       <BreadcumbWrapper>
         <Breadcumbs />
       </BreadcumbWrapper>
-      <Shoes data={data} />
+      <Shoes data={filteredResults} />
     </>
   );
 }
