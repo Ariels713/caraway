@@ -228,12 +228,13 @@ ${'' /* Modal and Backdrop Styles */}
   color:var(--color-secondary);
     font-size: 2rem;
     text-transform: capitalize;
+    line-height:1.2;
 }
 
 .info{
   color:var(--color-secondary);
     font-size: 1rem;
-    line-height: 1.25;
+    line-height: 2;
     margin-block:2rem;
     margin-inline: 0; 
 }

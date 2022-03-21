@@ -28,9 +28,10 @@ const openModal = {
   },
 }
 
-function Modal({ handleClose, data, index }) {
-  console.log('data', data)
-  console.log('index', index)
+function Modal({ handleClose, data }) {
+  console.log('data from props', data)
+  let desc = data.body_html
+
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
@@ -43,22 +44,30 @@ function Modal({ handleClose, data, index }) {
       >
         <div className='product'>
           <div className='product-img'>
-            {/* <Image src={data[0].images[0].src} alt='' layout='fill' /> */}
+            <Image src={data.images[3].src} alt='' layout='fill' />
           </div>
           <div className='product-listing'>
             <div className='content'>
               <div className='content-display'>
-                <h1 className='name'>leather bag</h1>
+                <h1 className='name'>{data.title}</h1>
                 <p className='info'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Doloremque laborum optio natus quibusdam ea nam odit vitae id
-                  unde officia.
+                  {data.body_html.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, '')}
                 </p>
               </div>
               <div className='btn-and-rating-box'>
-                <p className='price'>$ 299</p>
+                <p className='price'>&#36; {data.variants[0].price}</p>
                 <button className='btn'>buy now</button>
               </div>
+              <ProductStyle>
+                Available sizes:{' '}
+                {data.variants.map((sizes, id) => {
+                  if (sizes.available === false) {
+                    return <Unavailable key={id}>{sizes.title}</Unavailable>
+                  } else if (sizes.available === true) {
+                    return <Available key={id}>{sizes.title}</Available>
+                  }
+                })}
+              </ProductStyle>
             </div>
           </div>
         </div>
@@ -68,3 +77,23 @@ function Modal({ handleClose, data, index }) {
 }
 
 export default Modal
+
+const ProductStyle = styled.p`
+  color: hsla(219, 7%, 51%, 1);
+  font-size: 0.85rem;
+`
+const Unavailable = styled.span`
+  display: inline-block;
+  color: hsla(352, 84%, 59%, 1);
+  font-size: 0.85rem;
+  text-decoration: line-through;
+  margin-inline: 0.25rem;
+  opacity: 0.5;
+`
+const Available = styled.span`
+  display: inline-block;
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+
+  margin-inline: 0.25rem;
+`

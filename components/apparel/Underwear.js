@@ -65,8 +65,7 @@ function Underwear({ data }) {
                   </ProductStyle>
                   {modalOpen && (
                     <Modal
-                      data={res}
-                      index={index}
+                      data={filteredResults[index]}
                       modalOpen={modalOpen}
                       handleClose={close}
                     />
