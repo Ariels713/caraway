@@ -16,7 +16,7 @@ function Underwear({ data }) {
   const filteredResults = results.filter((apparel) => {
     return apparel.product_type === "Underwear";
   });
-
+  console.log(filteredResults);
   return (
     <>
       <Wrapper>
@@ -27,7 +27,10 @@ function Underwear({ data }) {
               const { published_at, id, images, title, variants, options } =
                 res;
               return (
-                <GridItemAnchor key={id}>
+                <GridItemAnchor
+                  key={id}
+                  onClick={() => (modalOpen ? close() : open())}
+                >
                   <ImageWrapper>
                     <Image
                       src={images[0].src}
@@ -72,14 +75,15 @@ function Underwear({ data }) {
                 </GridItemAnchor>
               );
             })}
-            <button onClick={() => (modalOpen ? close() : open())}>
-              Modal
-            </button>
           </GridParent>
         </GridWrapper>
       </Wrapper>
       {modalOpen && (
-        <Modal data={data} modalOpen={modalOpen} handleClose={close} />
+        <Modal
+          data={filteredResults}
+          modalOpen={modalOpen}
+          handleClose={close}
+        />
       )}
     </>
   );
