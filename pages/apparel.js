@@ -158,6 +158,7 @@ const ProductPrice = styled.p`
 
 const ProductStyle = styled.p`
   color: hsla(219, 7%, 51%, 1);
+  font-size: 0.85rem;
 `;
 
 const SalePill = styled.span`
