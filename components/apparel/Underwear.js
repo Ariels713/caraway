@@ -16,7 +16,7 @@ function Underwear({ data }) {
   const filteredResults = results.filter((apparel) => {
     return apparel.product_type === 'Underwear'
   })
-  console.log(filteredResults)
+  // console.log('filtered', filteredResults)
   return (
     <>
       <Wrapper>
@@ -26,51 +26,56 @@ function Underwear({ data }) {
             {filteredResults.map((res, index) => {
               const { published_at, id, images, title, variants, options } = res
               return (
-                <GridItemAnchor
-                  key={id}
-                  onClick={() => (modalOpen ? close() : open())}
-                >
-                  <ImageWrapper>
-                    <Image
-                      src={images[0].src}
-                      alt='title'
-                      layout='fill'
-                      className='nextImageScale'
-                    />
-                  </ImageWrapper>
-                  <ProductWrapper>
-                    {variants.map((sale) => {
-                      const { id } = sale
-                      if (sale.compare_at_price != null) {
-                        return <SalePill key={id}>Sale</SalePill>
-                      }
-                    })}
-                    <ProductName>{title}</ProductName>
-                    {newItemAlert(published_at) < 7 ? (
-                      <NewPill>New</NewPill>
-                    ) : null}
-                  </ProductWrapper>
-                  <ProductPrice>
-                    {` `} &#36;{variants[0].price}
-                  </ProductPrice>
-                  <ProductStyle>
-                    Available sizes:{' '}
-                    {variants.map((sizes, id) => {
-                      if (sizes.available === false) {
-                        return <Unavailable key={id}>{sizes.title}</Unavailable>
-                      } else if (sizes.available === true) {
-                        return <Available key={id}>{sizes.title}</Available>
-                      }
-                    })}
-                  </ProductStyle>
+                <>
+                  <GridItemAnchor
+                    key={id}
+                    onClick={() => (modalOpen ? close() : open())}
+                  >
+                    <ImageWrapper>
+                      <Image
+                        src={images[0].src}
+                        alt='title'
+                        layout='fill'
+                        className='nextImageScale'
+                      />
+                    </ImageWrapper>
+                    <ProductWrapper>
+                      {variants.map((sale) => {
+                        const { id } = sale
+                        if (sale.compare_at_price != null) {
+                          return <SalePill key={id}>Sale</SalePill>
+                        }
+                      })}
+                      <ProductName>{title}</ProductName>
+                      {newItemAlert(published_at) < 7 ? (
+                        <NewPill>New</NewPill>
+                      ) : null}
+                    </ProductWrapper>
+                    <ProductPrice>
+                      {` `} &#36;{variants[0].price}
+                    </ProductPrice>
+                    <ProductStyle>
+                      Available sizes:{' '}
+                      {variants.map((sizes, id) => {
+                        if (sizes.available === false) {
+                          return (
+                            <Unavailable key={id}>{sizes.title}</Unavailable>
+                          )
+                        } else if (sizes.available === true) {
+                          return <Available key={id}>{sizes.title}</Available>
+                        }
+                      })}
+                    </ProductStyle>
+                  </GridItemAnchor>
                   {modalOpen && (
                     <Modal
-                      data={filteredResults[index]}
+                      data={filteredResults}
+                      index={index}
                       modalOpen={modalOpen}
                       handleClose={close}
                     />
                   )}
-                </GridItemAnchor>
+                </>
               )
             })}
           </GridParent>
