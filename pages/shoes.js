@@ -45,7 +45,16 @@ function shoes({ data }) {
                     {` `} &#36;{variants[0].price}
                   </ProductPrice>
                   <ProductStyle>
-                    Available in {options[0].values.length} sizes.
+                    Available sizes:{" "}
+                    {variants.map((sizes, id) => {
+                      if (sizes.available === false) {
+                        return (
+                          <Unavailable key={id}>{sizes.title}</Unavailable>
+                        );
+                      } else if (sizes.available === true) {
+                        return <Available key={id}>{sizes.title}</Available>;
+                      }
+                    })}
                   </ProductStyle>
                 </GridItemAnchor>
               );
@@ -188,4 +197,20 @@ const NewPill = styled.span`
   color: var(--color-secondary);
   font-weight: 500;
   font-size: 0.75rem;
+`;
+
+const Unavailable = styled.span`
+  display: inline-block;
+  color: hsla(352, 84%, 59%, 1);
+  font-size: 0.85rem;
+  text-decoration: line-through;
+  margin-inline: 0.25rem;
+  opacity: 0.5;
+`;
+const Available = styled.span`
+  display: inline-block;
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+
+  margin-inline: 0.25rem;
 `;

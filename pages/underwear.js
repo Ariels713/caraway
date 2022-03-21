@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import Breadcumbs from "../components/products/Breadcumbs";
 import { newItemAlert } from "../utils/dateRange";
+import { interopSymbols } from "xstate/lib/utils";
 
 const apparelEndpoint = "https://www.allbirds.com/products.json?limit=100";
 
@@ -29,13 +30,18 @@ function underwear({ data }) {
               return (
                 <GridItemAnchor key={id}>
                   <ImageWrapper>
-                    <Image src={images[0].src} alt="title" layout="fill" />
+                    <Image
+                      src={images[0].src}
+                      alt="title"
+                      layout="fill"
+                      className="nextImageScale"
+                    />
                   </ImageWrapper>
                   <ProductWrapper>
                     {variants.map((sale) => {
                       const { id } = sale;
                       if (sale.compare_at_price != null) {
-                        return <SalePill key={id}>Sale!</SalePill>;
+                        return <SalePill key={id}>Sale</SalePill>;
                       }
                     })}
                     <ProductName>{title}</ProductName>
@@ -44,10 +50,25 @@ function underwear({ data }) {
                     ) : null}
                   </ProductWrapper>
                   <ProductPrice>
+                    {/* {variants.map((stock) => {
+                      if (!stock.available) {
+                        return <OutOfStock>Out of stock</OutOfStock>;
+                      }
+                      return `&#36;${variants[0].price}`;
+                    })} */}
                     {` `} &#36;{variants[0].price}
                   </ProductPrice>
                   <ProductStyle>
-                    Available in {options[0].values.length} sizes.
+                    Available sizes:{" "}
+                    {variants.map((sizes, id) => {
+                      if (sizes.available === false) {
+                        return (
+                          <Unavailable key={id}>{sizes.title}</Unavailable>
+                        );
+                      } else if (sizes.available === true) {
+                        return <Available key={id}>{sizes.title}</Available>;
+                      }
+                    })}
                   </ProductStyle>
                 </GridItemAnchor>
               );
@@ -129,17 +150,12 @@ const ImageWrapper = styled.div`
   border-radius: 10px;
   overflow: hidden;
   background-color: hsla(19, 34%, 96%, 1);
+  transition: transform 300ms ease-in-out;
 
   &:hover {
-    opacity: 0.75;
+    opacity: 0.95;
+    transform: scale(1.025);
   }
-`;
-
-const GridImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
 `;
 
 const ProductWrapper = styled.div`
@@ -189,4 +205,25 @@ const NewPill = styled.span`
   color: var(--color-secondary);
   font-weight: 500;
   font-size: 0.75rem;
+`;
+
+const OutOfStock = styled.p`
+  color: hsla(219, 7%, 51%, 1);
+  font-size: 1rem;
+`;
+
+const Unavailable = styled.span`
+  display: inline-block;
+  color: hsla(352, 84%, 59%, 1);
+  font-size: 0.85rem;
+  text-decoration: line-through;
+  margin-inline: 0.25rem;
+  opacity: 0.5;
+`;
+const Available = styled.span`
+  display: inline-block;
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+
+  margin-inline: 0.25rem;
 `;
