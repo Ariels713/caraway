@@ -119,7 +119,6 @@ img[width] {
     object-position: center;
 }
 
-
 :target {
   scroll-margin-top: 2rem;
 }
@@ -158,9 +157,28 @@ ${"" /* Utility Classes */}
 
 
 
+${"" /* Modal and Backdrop Styles */}
 
+.backdrop{
+  position:absolute;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 100%;
+  background-color: hsla(0, 0%, 12%, .50);
+  display:grid;
+  place-content:center;
+}
 
-
+.modal {
+  width: clamp(50%, 700px, 90%);
+  height: min-content(50%, 300px);
+  margin:auto;
+  padding-inline:2rem;
+  padding-block: 0; 
+  display:grid;
+  place-content:center;
+}
 
 `;
 
