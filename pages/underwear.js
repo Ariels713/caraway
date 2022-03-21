@@ -13,7 +13,7 @@ function underwear({ data }) {
   });
 
   console.log(filteredResults);
-  console.log("time past", newItemAlert(filteredResults[0].published_at));
+
   return (
     <>
       <BreadcumbWrapper>
@@ -24,7 +24,8 @@ function underwear({ data }) {
           <h1>Underwear</h1>
           <GridParent>
             {filteredResults.map((res) => {
-              const { published_at, id, images, title, variants } = res;
+              const { published_at, id, images, title, variants, options } =
+                res;
               return (
                 <GridItemAnchor key={id}>
                   <ImageWrapper>
@@ -45,7 +46,9 @@ function underwear({ data }) {
                   <ProductPrice>
                     {` `} &#36;{variants[0].price}
                   </ProductPrice>
-                  <ProductStyle>3 Styles Available</ProductStyle>
+                  <ProductStyle>
+                    Available in {options[0].values.length} sizes.
+                  </ProductStyle>
                 </GridItemAnchor>
               );
             })}
@@ -177,7 +180,7 @@ const NewPill = styled.span`
   display: grid;
   justify-content: center;
   max-width: 50px;
-  max-width: 50px;
+  max-height: 25px;
   padding-inline: 0.5rem;
   padding-block: 0.125rem;
   background-color: hsla(163, 30%, 75%, 0.5);
