@@ -69,7 +69,7 @@ function Underwear({ data }) {
                   </GridItemAnchor>
                   {modalOpen && (
                     <Modal
-                      data={filteredResults}
+                      data={res}
                       index={index}
                       modalOpen={modalOpen}
                       handleClose={close}

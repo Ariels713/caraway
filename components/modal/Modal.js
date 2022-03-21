@@ -29,8 +29,9 @@ const openModal = {
 }
 
 function Modal({ handleClose, data, index }) {
-  // console.log('data from props', data[index].title)
+  // console.log('data from props', data.title)
   // console.log(index)
+  console.log('res', data)
   let desc = data.body_html
 
   return (
@@ -45,26 +46,23 @@ function Modal({ handleClose, data, index }) {
       >
         <div className='product'>
           <div className='product-img'>
-            <Image src={data[index].images[3].src} alt='' layout='fill' />
+            <Image src={data.images[3].src} alt='' layout='fill' />
           </div>
           <div className='product-listing'>
             <div className='content'>
               <div className='content-display'>
-                <h1 className='name'>{data[index].title}</h1>
+                <h1 className='name'>{data.title}</h1>
                 <p className='info'>
-                  {data[index].body_html.replace(
-                    /(<p[^>]+?>|<p>|<\/p>)/gim,
-                    ''
-                  )}
+                  {data.body_html.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, '')}
                 </p>
               </div>
               <div className='btn-and-rating-box'>
-                <p className='price'>&#36; {data[index].variants[0].price}</p>
+                <p className='price'>&#36; {data.variants[0].price}</p>
                 <button className='btn'>buy now</button>
               </div>
               <ProductStyle>
                 Available sizes:{' '}
-                {data[index].variants.map((sizes, id) => {
+                {data.variants.map((sizes, id) => {
                   if (sizes.available === false) {
                     return <Unavailable key={id}>{sizes.title}</Unavailable>
                   } else if (sizes.available === true) {
