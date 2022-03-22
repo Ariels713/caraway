@@ -24,7 +24,6 @@ function Shoes({ data }) {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   return (
     <>
       <Wrapper>

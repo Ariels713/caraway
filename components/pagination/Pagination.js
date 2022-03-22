@@ -15,7 +15,11 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
         <OrderedList role="list">
           {pageNumbers.map((number) => (
             <li key={number} className="page-item">
-              <Button onClick={() => paginate(number)} className="page-link">
+              <Button
+                href="#top"
+                onClick={() => paginate(number)}
+                className="page-link"
+              >
                 {number}
               </Button>
               <NextPage />
@@ -45,11 +49,14 @@ const Button = styled.button`
   border: transparent;
   color: var(--color-secondary);
   margin-inline-start: 1rem;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 500;
   background-color: hsla(0, 0%, 100%, 1);
   &:hover {
-    opacity: 0.75;
+    opacity: 0.85;
+    background-color: hsla(163, 30%, 75%, 0.5);
+    border-radius: 4px;
+    color: var(--color-secondary);
   }
 `;
 
