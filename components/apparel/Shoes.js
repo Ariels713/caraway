@@ -11,7 +11,6 @@ function Shoes({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
 
-  console.log(posts);
   // Modal State
   const [modalOpen, setModalOpen] = useState(false);
   const close = () => setModalOpen(false);

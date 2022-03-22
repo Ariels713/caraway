@@ -2,14 +2,28 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { newItemAlert } from "../../utils/dateRange";
-import { Motion } from "framer-motion";
 import Modal from "../../components/modal/Modal";
+import Pagination from "../pagination/Pagination";
 
 function Apparel({ data }) {
+  //Pagination state
+  const [posts] = useState(data);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(12);
+
+  //Modal State
   const [modalOpen, setModalOpen] = useState(false);
   const close = () => setModalOpen(false);
   const open = () => setModalOpen(true);
   const [modalID, setModalID] = useState(null);
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <>
@@ -17,7 +31,7 @@ function Apparel({ data }) {
         <GridWrapper>
           <h1>Apparel</h1>
           <GridParent>
-            {data.map((res, index) => {
+            {currentPosts.map((res, index) => {
               const { published_at, id, images, title, variants, options } =
                 res;
               return (
@@ -81,6 +95,11 @@ function Apparel({ data }) {
           index={modalID}
         />
       )}
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        paginate={paginate}
+      />{" "}
     </>
   );
 }
